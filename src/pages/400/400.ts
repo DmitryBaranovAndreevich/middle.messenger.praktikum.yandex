@@ -1,5 +1,5 @@
 import Handlebars from "handlebars";
-import "./404.scss";
+import "./400.scss";
 
 const source =
   document.querySelector<HTMLScriptElement>("#entry-template")!.innerHTML;

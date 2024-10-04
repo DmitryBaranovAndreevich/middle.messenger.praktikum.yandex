@@ -1,14 +1,23 @@
 .typography {
   margin: 0;
-}
-.size-big {
-  font: 500 40px/40px "Inter";
-}
 
-.size-middle {
-  font: 500 20px/20px "Inter";
-}
+  &_size-big {
+    font: 500 40px/40px "Inter";
+  }
+  
+  &_size-middle {
+    font: 500 20px/20px "Inter";
+  }
+  
+  &_size-small {
+    font: 500 11px/11px "Inter";
+  }
+  
+  &_size-little {
+    font: 500 9px/9px "Inter";
+  }
 
-.size-small {
-  font: 500 11px/11px "Inter";
+  &_color-disable {
+    color: $colorDisable;
+  }
 }

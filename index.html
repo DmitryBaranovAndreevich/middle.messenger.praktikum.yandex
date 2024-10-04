@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <a href="./src/pages/404/404.html">404</a>
-  <a href="./src/pages/500/500.html">500</a>
+  {{> head title="main"}}
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script id="entry-template" type="text/x-handlebars-template">
+    {{#> flex flexDirection="column"}}
+    <a href="./src/pages/500/500.html">500</a>
+    <a href="./src/pages/400/400.html">404</a>
+    <a href="./src/pages/login/login.html">login</a>
+    <a href="./src/pages/register/register.html">register</a>
+    {{/ flex}}
+  </script>
+  <script type="module" src="./src/pages/main/main.ts"></script>
 </html>
