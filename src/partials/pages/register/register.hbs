@@ -5,12 +5,12 @@
     {{/typography}}
     <form class="registerPage__formWrapper" name="registerForm">
         {{#> flex flexDirection="column" alignItems="center" className="registerPage__form"}}
-          {{> inputWithItem item="Почта" name="email" type="email" }}
-          {{> inputWithItem item="Логин" name="login" type="text" }}
-          {{> inputWithItem item="Имя" name="first_name" type="text" }}
-          {{> inputWithItem item="Фамилия" name="second_name" type="text" }}
-          {{> inputWithItem item="Телефон" name="phone" type="text" }}
-          {{> inputWithItem item="Пароль" name="password" type="password" }}
+          {{> inputWithItem item="Почта" name="email" type="email" error="Заполните поле"}}
+          {{> inputWithItem item="Логин" name="login" type="text" error="Заполните поле"}}
+          {{> inputWithItem item="Имя" name="first_name" type="text" error="Заполните поле"}}
+          {{> inputWithItem item="Фамилия" name="second_name" type="text" error="Заполните поле"}}
+          {{> inputWithItem item="Телефон" name="phone" type="text" error="Заполните поле"}}
+          {{> inputWithItem item="Пароль" name="password" type="password" error="Заполните поле"}}
           {{> inputWithItem item="Пароль (ещё раз)" name="password-copy" type="password" error="Пароли не совпадают"}}
           {{#> button type="submit" className="registerPage__submitButton"}}
             Авторизоваться

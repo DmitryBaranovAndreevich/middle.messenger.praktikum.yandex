@@ -1,0 +1,12 @@
+\{{#each userParams}}
+<li class="paramsRow">
+  \{{#> typography size="middleLittle"}}
+  \{{label}}
+  \{{/typography}}
+  \{{#if disabled}}
+  <input value="\{{value}}" class="paramsRow__input" disabled name="{{name}}"/>
+  \{{else}}
+  <input value="\{{value}}" class="paramsRow__input" name="{{name}}"/>
+  \{{/if}}
+</li>
+\{{/each}}

@@ -5,8 +5,8 @@
     {{/typography}}
     <form class="loginPage__formWrapper">
         {{#> flex flexDirection="column" alignItems="center" className="loginPage__form"}}
-          {{> inputWithItem item="Логин" name="login" type="text" }}
-          {{> inputWithItem item="Пароль" name="password" type="password" }}
+          {{> inputWithItem item="Логин" name="login" type="text" error="Неверный логин"}}
+          {{> inputWithItem item="Пароль" name="password" type="password" error="Заполните поле"}}
           {{#> button type="submit" className="loginPage__submitButton"}}
             Авторизоваться
           {{/button}}
