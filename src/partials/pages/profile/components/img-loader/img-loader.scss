@@ -8,6 +8,7 @@
   border-radius: 50%;
   position: relative;
   margin-bottom: 20px;
+  background: $lightColorDisable;
 
   &__img {
     width: 40px;
@@ -16,21 +17,26 @@
     user-select: none;
   }
 
-  &__inputLabel {
+  &__changeAvatarButton {
     border-radius: 50%;
     position: absolute;
     z-index: 10;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background: $lightColorDisable;
-    opacity: 0.5;
+    opacity: 0;
+    border: none;
+    color: $textColorLight;
+    font: 500 13px/14px "Inter";
 
     &:hover {
       cursor: pointer;
-      opacity: 0.3;
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.5);
     }
   }
 }

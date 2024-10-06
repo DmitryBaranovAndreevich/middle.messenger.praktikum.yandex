@@ -1,6 +1,6 @@
 {{#> center-page-template}}
   {{#> flex flexDirection="column" alignItems="center" className="profilePage"}}
-    {{> imgLoader}}
+    {{> img-loader}}
     {{#> typography size="middleSmall"}}
         Иван
     {{/typography}}
@@ -13,8 +13,8 @@
         Изменить пароль
     </button>
      <div class="profilePage__splitter"></div>
-     <button class="profilePage__link profilePage__exit">
+     <a class="profilePage__link profilePage__exit" href="../../../">
         Выйти
-    </button>
+    </a>
   {{/flex }}
 {{/center-page-template}}

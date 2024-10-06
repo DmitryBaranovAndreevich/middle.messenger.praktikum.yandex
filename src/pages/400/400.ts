@@ -1,10 +1,5 @@
-import Handlebars from "handlebars";
+import { addTemplate } from "../../utils";
 import "./400.scss";
 
-const source =
-  document.querySelector<HTMLScriptElement>("#entry-template")!.innerHTML;
 const root = document.querySelector<HTMLDivElement>("#root");
-const template = Handlebars.compile(source)({});
-if (root) {
-  root.innerHTML = template;
-}
+addTemplate("#entry-template", root);
