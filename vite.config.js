@@ -2,7 +2,6 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import handlebars from "vite-plugin-handlebars";
 import { readdirSync } from "fs";
-import { defineConfig } from 'vite'
 
 const allTemplateDirectories = [];
 
@@ -29,6 +28,7 @@ export default defineConfig({
         login: resolve(__dirname, "src/pages/login/login.html"),
         profile: resolve(__dirname, "src/pages/profile/profile.html"),
         register: resolve(__dirname, "src/pages/register/register.html"),
+        chats: resolve(__dirname, "src/pages/chats/chats.html"),
       },
     },
   },
