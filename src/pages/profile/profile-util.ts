@@ -1,7 +1,7 @@
 import { addTemplate } from "../../utils";
 import { changePassConfig, userParamsConfig } from "./profile-constants";
 import Handlebars from "handlebars";
-
+import img from "../../icons/imgLoader.svg";
 
 const root = document.querySelector<HTMLDivElement>("#root");
 
@@ -15,6 +15,8 @@ export function addMainProfileTemplate() {
   addTemplate("#user-params-template", paramsContainer, {
     userParams: userParamsConfig,
   });
+
+  addImg(".upload-container", img);
 
   const openPopupLoadbutton = document.querySelector<HTMLButtonElement>(
     ".upload-container__changeAvatarButton"
@@ -50,6 +52,7 @@ function addEditProfileTemplate(e: MouseEvent) {
     userParams: userParamsConfig.map((el) => ({ ...el, disabled: false })),
   });
 
+  addImg(".upload-container", img);
   const openPopupLoadbutton = document.querySelector<HTMLButtonElement>(
     ".upload-container__changeAvatarButton"
   );
@@ -68,9 +71,19 @@ function addChangePassTemplate(e: MouseEvent) {
     userParams: changePassConfig,
   });
 
+  addImg(".upload-container", img);
+
   const openPopupLoadbutton = document.querySelector<HTMLButtonElement>(
     ".upload-container__changeAvatarButton"
   );
 
   openPopupLoadbutton?.addEventListener("click", openPopupLoadAvatar);
+}
+
+function addImg(parentSelector: string, src: string) {
+  const img = document.createElement("img");
+  img.className = "upload-container__img";
+  img.src = src;
+  const parent = document.querySelector(parentSelector);
+  parent?.appendChild(img);
 }
