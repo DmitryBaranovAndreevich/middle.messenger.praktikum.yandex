@@ -1,4 +1,5 @@
 import { resolve } from "path";
+import { defineConfig } from "vite";
 import handlebars from "vite-plugin-handlebars";
 import { readdirSync } from "fs";
 import { defineConfig } from 'vite'
@@ -6,8 +7,8 @@ import { defineConfig } from 'vite'
 const allTemplateDirectories = [];
 
 const getDirectories = (source, result) => {
-  const dir = readdirSync(source, { withFileTypes: true }).filter(
-    (dirent) => dirent.isDirectory()
+  const dir = readdirSync(source, { withFileTypes: true }).filter((dirent) =>
+    dirent.isDirectory()
   );
 
   dir.forEach((d) => {
@@ -16,33 +17,24 @@ const getDirectories = (source, result) => {
   });
 };
 
-getDirectories(resolve(__dirname, "src/partials"), allTemplateDirectories)
-
-// export default {
-//   plugins: [
-//     handlebars({
-//       partialDirectory: allTemplateDirectories,
-//     }),
-//   ],
-// };
-
+getDirectories(resolve(__dirname, "src/partials"), allTemplateDirectories);
 
 export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        400: resolve(__dirname, 'src/pages/400/400.html'),
-        500: resolve(__dirname, 'src/pages/500/500.html'),
-        login: resolve(__dirname, 'src/pages/login/login.html'),
-        profile: resolve(__dirname, 'src/pages/profile/profile.html'),
-        register: resolve(__dirname, 'src/pages/register/register.html'),
-      }
-    }
+        main: resolve(__dirname, "index.html"),
+        400: resolve(__dirname, "src/pages/400/400.html"),
+        500: resolve(__dirname, "src/pages/500/500.html"),
+        login: resolve(__dirname, "src/pages/login/login.html"),
+        profile: resolve(__dirname, "src/pages/profile/profile.html"),
+        register: resolve(__dirname, "src/pages/register/register.html"),
+      },
+    },
   },
   plugins: [
     handlebars({
       partialDirectory: allTemplateDirectories,
     }),
   ],
-})
+});
