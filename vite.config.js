@@ -19,6 +19,7 @@ const getDirectories = (source, result) => {
 getDirectories(resolve(__dirname, "src/partials"), allTemplateDirectories);
 
 export default defineConfig({
+  server: { port: 3000 },
   build: {
     rollupOptions: {
       input: {
