@@ -4,17 +4,33 @@
     <link rel="icon" href="./src/icons/favicon.svg" />
   {{/head}}
   <body>
-    <div id="root"></div>
+    <main>
+      <div id="root"></div>
+    </main>
   </body>
   <script id="entry-template" type="text/x-handlebars-template">
-    {{#> flex flexDirection="column"}}
-    <a href="./src/pages/500/500.html">500</a>
-    <a href="./src/pages/400/400.html">404</a>
-    <a href="./src/pages/login/login.html">login</a>
-    <a href="./src/pages/register/register.html">register</a>
-    <a href="./src/pages/profile/profile.html">profile</a>
-    <a href="./src/pages/chats/chats.html">chats</a>
-    {{/ flex}}
+    <nav>
+      <ul class="menu">
+        <li class="menu__item">
+          <a href="./src/pages/500/500.html">500</a>
+        </li>
+        <li class="menu__item">
+          <a href="./src/pages/400/400.html">404</a>
+        </li>
+        <li class="menu__item">
+          <a href="./src/pages/login/login.html">login</a>
+        </li>
+        <li class="menu__item">
+          <a href="./src/pages/register/register.html">register</a>
+        </li>
+        <li class="menu__item">
+          <a href="./src/pages/profile/profile.html">profile</a>
+        </li>
+        <li class="menu__item">
+          <a href="./src/pages/chats/chats.html">chats</a>
+        </li>
+      </ul>
+    </nav>
   </script>
   <script type="module" src="./src/pages/main/main.ts"></script>
 </html>
