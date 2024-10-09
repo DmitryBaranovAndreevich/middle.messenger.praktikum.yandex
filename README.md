@@ -1,7 +1,7 @@
 Проект "Messenger".
 
 Реализация задания 1 спринта: 
-деплой: https://67065efadfd4240008cc711c--messendger.netlify.app/
+деплой: https://6706636ce6704a000868df48--messendger.netlify.app/
 На стартовой странице имеются ссылки на: 404, 500, login, register, profile. Вместо страницы чатов пока, что "заглушка".
 При разработке использовался фреймворк Handelbars и препоцессор SCSS.
 
