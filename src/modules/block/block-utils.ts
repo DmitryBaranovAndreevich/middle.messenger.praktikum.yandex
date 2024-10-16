@@ -10,6 +10,7 @@ export function render<T extends Record<string, TProps>>(
 
   if (node && root) {
     root.appendChild(node);
+    block.dispatchComponentDidMount();
   }
 
   return root;

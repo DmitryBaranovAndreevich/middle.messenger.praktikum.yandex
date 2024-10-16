@@ -3,6 +3,8 @@ import styles from "./button.module.scss";
 
 type TButton = {
   text: string;
+  type: string;
+  className?: string;
 };
 
 export class Button extends Block<TButton> {
@@ -10,6 +12,6 @@ export class Button extends Block<TButton> {
     super(props);
   }
   render() {
-    return `<button class=${styles.button} type="submit">{{text}}</button>`;
+    return `<button class="${styles.button} {{className}}" type="{{type}}">{{text}}</button>`;
   }
 }
