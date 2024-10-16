@@ -11,6 +11,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
   props: TPropsObj<T> & { _id: string };
   children: Record<string, Block<Record<string, TProps>>>;
   eventBus: () => IEventBus;
+  _state: { value: TProps } = { value: null };
 
   constructor(propsAndChildren: TPropsObj<T>) {
     const eventBus = new EventBus();
@@ -28,6 +29,20 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
     eventBus.emit(EEvents.INIT);
+  }
+
+  get state() {
+    return this._state.value;
+  }
+
+  set state(value) {
+    this._state.value = value;
+    this.eventBus().emit(EEvents.FLOW_CDU, this._state, value);
+  }
+
+  setState(callback: (curState: TProps) => TProps) {
+    const newState = callback(this.state);
+    this.state = newState;
   }
 
   _registerEvents(eventBus: IEventBus) {
@@ -51,12 +66,14 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
   }
 
   _componentDidMount() {
-    this.componentDidMount(this.props);
+    this.componentDidMount(this._meta.props);
+
+    Object.values(this.children).forEach((child) => {
+      child.dispatchComponentDidMount();
+    });
   }
 
-  componentDidMount(oldProps: TPropsObj<T>) {
-    return oldProps;
-  }
+  componentDidMount(oldProps: TPropsObj<T>) {}
 
   dispatchComponentDidMount() {
     this.eventBus().emit(EEvents.FLOW_CDM);
@@ -128,10 +145,18 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     return fragment.content;
   }
 
+  componentDidUnMount() {}
+
   _render() {
     const block = this.render();
-    const el = this._getCompileTemplate(block, this.props);
-    const updateContentNode = this._compile(el, this.props);
+    const el = this._getCompileTemplate(block, {
+      ...this.props,
+      state: this.state,
+    });
+    const updateContentNode = this._compile(el, {
+      ...this.props,
+      state: this.state,
+    });
     if (this._element && updateContentNode) {
       this._element.innerHTML = "";
       this._element.appendChild(updateContentNode);
@@ -200,12 +225,14 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     const tagWithAttributes = /^<([^>]*)/.exec(template);
     if (tagWithAttributes) {
       this._removeAttributes();
-      const attributes = [...tagWithAttributes[1].matchAll(/([^\s]*=[^\s]*)/g)];
+      const attributes = [
+        ...tagWithAttributes[1].matchAll(/([^\s]*="[^"]*"(?=\s|))/g),
+      ];
       attributes.forEach((el) => {
         const [key, value] = el[0]
           .split("=")
           .map((el) => el.replaceAll(`"`, ""));
-        this._element?.setAttribute(key, value);
+          this._element?.setAttribute(key, value);
       });
     }
   }
