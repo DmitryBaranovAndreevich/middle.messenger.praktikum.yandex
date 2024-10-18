@@ -5,6 +5,49 @@
   width: 100%;
   max-width: 510px;
 
+  &__imgLoader {
+    margin : 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+    background: $lightColorDisable;
+  }
+
+  & &__changeAvatar {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    border: none;
+    color: $textColorLight;
+    font: 500 13px/14px "Inter";
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    text-align: center;
+    font: 600 16px/16px "Inter";
+  }
+
   &__ {
     margin: 0;
   }
@@ -40,7 +83,7 @@
     border: 1px solid $lightColorDisable;
   }
 
-  &__exit {
+  & &__exit {
     color: $colorError;
   }
 

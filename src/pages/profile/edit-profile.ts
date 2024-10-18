@@ -1,9 +1,9 @@
 import { Block, TPropsObj } from "../../modules";
-import { TProfileTemplate } from "./profile-types";
+import { TEditProfileTemplate } from "./profile-types";
 import styles from "./profile.module.scss";
 
-export class ProfileTemplate extends Block<TProfileTemplate> {
-  constructor(props: TPropsObj<TProfileTemplate>) {
+export class EditProfileTemplate extends Block<TEditProfileTemplate> {
+  constructor(props: TPropsObj<TEditProfileTemplate>) {
     super(props);
   }
   render() {
@@ -11,7 +11,6 @@ export class ProfileTemplate extends Block<TProfileTemplate> {
                 <div class="${styles.profile__imgLoader}">
                   {{{changeAvatarButton}}}
                 </div>
-                <p class="${styles.profile__title}">{{name}}</p>
                 <ul class="${styles.profile__userParamsContainer}">
                   {{{email}}}
                   {{{login}}}
@@ -21,11 +20,7 @@ export class ProfileTemplate extends Block<TProfileTemplate> {
                   {{{phone}}}    
                   {{{buttonSubmit}}}
                 </ul>
-                {{{editProfileButton}}}
-                <div class="${styles.profile__splitter}"></div>
-                {{{changePassButton}}}
-                <div class="${styles.profile__splitter}"></div>
-                {{{exitButton}}}
+                {{{submitButton}}}
               </div>`;
   }
 }
