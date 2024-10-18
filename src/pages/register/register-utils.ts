@@ -1,11 +1,11 @@
 import { registerParamsConfig } from "./register-constants";
 import { CenterPageLayout } from "../../layouts";
-import styles from "./register.module.scss";
 import { getInputWithItem } from "../../components";
 import { TRegisterTemplate } from "./register-types";
 import { Button, InputWithItem, Link } from "../../components";
 import { RegisterTemplate } from "./register";
 import { render } from "../../modules";
+import styles from "./register.module.scss";
 
 const inputs = registerParamsConfig.map((el) =>
   getInputWithItem({
