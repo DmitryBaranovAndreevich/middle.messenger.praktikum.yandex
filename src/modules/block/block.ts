@@ -117,6 +117,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
   }
 
   _getCompileTemplate(template: string | void, props: TPropsObj<T>) {
+    console.log(template)
     const compileTemplate = Handlebars.compile(template);
     const propsAndStubs: TPropsObj<Record<string, unknown>> = { ...props };
 
@@ -131,10 +132,8 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
       return;
     }
     const compileTemplate = this._getCompileTemplate(template, props);
-
     const fragment = document.createElement("template");
     fragment.innerHTML = this._getContentTemplate(compileTemplate);
-
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
       const content = child.getContent();
