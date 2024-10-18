@@ -1,5 +1,5 @@
-import { Button, Link } from "../../components";
-import { Params } from "./components";
+import { Button, Params } from "./components";
+import { Button as SubmitButton } from "../../components";
 
 export type TProfileTemplate = {
   phone: Params;
@@ -8,8 +8,18 @@ export type TProfileTemplate = {
   first_name: Params;
   login: Params;
   email: Params;
-  Name: string;
+  name: string;
   editProfileButton: Button;
   changePassButton: Button;
-  exitButton: Link;
+  exitButton: Button;
+  changeAvatarButton: Button;
 };
+
+export type TEditProfileTemplate = Omit<
+  TProfileTemplate,
+  "editProfileButton" | "changePassButton" | "exitButton"
+> & { submitButton: SubmitButton };
+
+export interface ICreateProfile {
+  onEditProfileClick: () => void;
+}
