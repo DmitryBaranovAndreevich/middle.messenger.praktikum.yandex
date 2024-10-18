@@ -1,89 +1,48 @@
-import { addTemplate } from "../../utils";
-import { changePassConfig, userParamsConfig } from "./profile-constants";
-import Handlebars from "handlebars";
-import img from "../../icons/imgLoader.svg";
+import { CenterPageLayout } from "../../layouts";
+import { Button, InputWithItem, Link } from "../../components";
+import { render } from "../../modules";
+import { userParamsConfig } from "./profile-constants";
+import { ProfileTemplate } from "./profile";
+import { TProfileTemplate } from "./profile-types";
+import { creteParams, Params } from "./components";
 
-const root = document.querySelector<HTMLDivElement>("#root");
+const params = userParamsConfig.map((el) =>
+  creteParams({
+    errorMessage: "error",
+    type: el.type,
+    disabled: el.disabled ? "disabled" : "",
+    name: el.name,
+    label: el.label,
+    value: el.value,
+  })
+);
 
-export function addMainProfileTemplate() {
-  addTemplate("#entry-template", root);
+const htmlElements = params.reduce(
+  (acc, el, index) => ({
+    ...acc,
+    [userParamsConfig[index].name]: el.component,
+  }),
+  {} as Record<keyof TProfileTemplate, Params>
+);
 
-  const paramsContainer = document.querySelector<HTMLUListElement>(
-    ".profilePage__userParamsContainer"
-  );
+// const buttonSubmit = new Button({
+//   text: "Авторизоваться",
+//   type: "submit",
+//   className: styles.registerPage__submitButton,
+//   events: {
+//     click: () => console.log("click"),
+//   },
+// });
 
-  addTemplate("#user-params-template", paramsContainer, {
-    userParams: userParamsConfig,
-  });
+const profileTemplate = new ProfileTemplate({
+  ...htmlElements,
+  name: "Иван"
+});
+// link,
 
-  addImg(".upload-container", img);
+const layout = new CenterPageLayout({
+  className: "profilePage",
+  content: profileTemplate,
+});
 
-  const openPopupLoadbutton = document.querySelector<HTMLButtonElement>(
-    ".upload-container__changeAvatarButton"
-  );
-  const changeProfileButton = document.querySelector<HTMLButtonElement>(
-    ".profilePage__editProfile"
-  );
-  const changePassButton = document.querySelector<HTMLButtonElement>(
-    ".profilePage__editPassword"
-  );
-  changeProfileButton?.addEventListener("click", addEditProfileTemplate);
-  changePassButton?.addEventListener("click", addChangePassTemplate);
-  openPopupLoadbutton?.addEventListener("click", openPopupLoadAvatar);
-}
-
-function openPopupLoadAvatar() {
-  const source = document.querySelector<HTMLScriptElement>(
-    "#img-popup-loader-template"
-  )!.innerHTML;
-  const template = Handlebars.compile(source)({});
-
-  document.body.innerHTML += template;
-}
-
-function addEditProfileTemplate(e: MouseEvent) {
-  const button = e.target as HTMLButtonElement;
-  button?.removeEventListener("click", addEditProfileTemplate);
-  addTemplate("#edit-profile-template", root);
-  const paramsContainer = document.querySelector<HTMLUListElement>(
-    ".profilePage__userParamsContainer"
-  );
-  addTemplate("#user-params-template", paramsContainer, {
-    userParams: userParamsConfig.map((el) => ({ ...el, disabled: false })),
-  });
-
-  addImg(".upload-container", img);
-  const openPopupLoadbutton = document.querySelector<HTMLButtonElement>(
-    ".upload-container__changeAvatarButton"
-  );
-
-  openPopupLoadbutton?.addEventListener("click", openPopupLoadAvatar);
-}
-
-function addChangePassTemplate(e: MouseEvent) {
-  const button = e.target as HTMLButtonElement;
-  button?.removeEventListener("click", addChangePassTemplate);
-  addTemplate("#edit-pass-template", root);
-  const paramsContainer = document.querySelector<HTMLUListElement>(
-    ".profilePage__userParamsContainer"
-  );
-  addTemplate("#user-params-template", paramsContainer, {
-    userParams: changePassConfig,
-  });
-
-  addImg(".upload-container", img);
-
-  const openPopupLoadbutton = document.querySelector<HTMLButtonElement>(
-    ".upload-container__changeAvatarButton"
-  );
-
-  openPopupLoadbutton?.addEventListener("click", openPopupLoadAvatar);
-}
-
-function addImg(parentSelector: string, src: string) {
-  const img = document.createElement("img");
-  img.className = "upload-container__img";
-  img.src = src;
-  const parent = document.querySelector(parentSelector);
-  parent?.appendChild(img);
-}
+render("#root", layout);

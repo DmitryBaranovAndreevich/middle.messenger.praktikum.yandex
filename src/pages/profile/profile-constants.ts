@@ -2,7 +2,7 @@ export const userParamsConfig = [
   {
     label: "Почта",
     value: "pochta@yandex.ru",
-    disabled: true,
+    disabled: false,
     name: "email",
     type: "text",
   },
