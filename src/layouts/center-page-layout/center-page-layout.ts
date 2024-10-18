@@ -13,6 +13,7 @@ export class CenterPageLayout extends Block<TCenterPageLayout> {
   render() {
     return `<div class="${styles.centerPageTemplate} {{className}}">
               <div class="${styles.centerPageTemplate__root}" >
+              {{{test}}}
                 {{{content}}}
               </div>
             </div>`;

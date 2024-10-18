@@ -90,7 +90,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     return oldProps !== newProps;
   }
 
-  setProps = (nextProps: TPropsObj<T>) => {
+  setProps = (nextProps: Partial<TPropsObj<T>>) => {
     if (!nextProps) {
       return;
     }
@@ -104,7 +104,6 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
   _getChildren(propsAndChildren: TPropsObj<T>) {
     const children: Record<string, Block<Record<string, TProps>>> = {};
     const props: TPropsObj<Record<string, any>> = {};
-
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
@@ -117,10 +116,8 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
   }
 
   _getCompileTemplate(template: string | void, props: TPropsObj<T>) {
-    console.log(template)
     const compileTemplate = Handlebars.compile(template);
     const propsAndStubs: TPropsObj<Record<string, unknown>> = { ...props };
-
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
@@ -148,16 +145,10 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
 
   _render() {
     const block = this.render();
-    const el = this._getCompileTemplate(block, {
-      ...this.props,
-      state: this.state,
-    });
-    const updateContentNode = this._compile(el, {
-      ...this.props,
-      state: this.state,
-    });
+    const el = this._getCompileTemplate(block, this.props);
+    const updateContentNode = this._compile(el, this.props);
     if (this._element && updateContentNode) {
-      this._element.innerHTML = "";
+      this._element.innerHTML = ``;
       this._element.appendChild(updateContentNode);
       this._setAttributes(el);
       this._addEvents();
@@ -192,8 +183,10 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
       set(target, props: string, value) {
         self._removeEvents();
         const oldProp = target[props];
+        if (self.children[props]) {
+          self.children[props] = value;
+        }
         target[props as keyof T] = value;
-
         self.eventBus().emit(EEvents.FLOW_CDU, oldProp, value);
         return true;
       },
@@ -231,7 +224,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
         const [key, value] = el[0]
           .split("=")
           .map((el) => el.replaceAll(`"`, ""));
-          this._element?.setAttribute(key, value);
+        this._element?.setAttribute(key, value);
       });
     }
   }
