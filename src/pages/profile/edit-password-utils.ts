@@ -1,14 +1,14 @@
-import { userParamsConfig } from "./profile-constants";
-import { TProfileTemplate } from "./profile-types";
+import { changePassConfig } from "./profile-constants";
+import { TEditPasswordTemplate } from "./profile-types";
 import { Button, creteParams, Params } from "./components";
-import { EditProfileTemplate } from "./edit-profile";
 import { Button as SubmitButton } from "../../components";
+import { EditPasswordTemplate } from "./edit-password";
 import styles from "./profile.module.scss";
 
-export function createEditProfileTemplate(goToProfile: () => void) {
-  const params = userParamsConfig.map((el) =>
+export function createEditPasswordTemplate(goToProfile: () => void) {
+  const params = changePassConfig.map((el) =>
     creteParams({
-      errorMessage: el.errorMessage || "",
+      errorMessage: el.errorMessage,
       type: el.type,
       disabled: "",
       name: el.name,
@@ -21,9 +21,9 @@ export function createEditProfileTemplate(goToProfile: () => void) {
   const htmlElements = params.reduce(
     (acc, el, index) => ({
       ...acc,
-      [userParamsConfig[index].name]: el.component,
+      [changePassConfig[index].name]: el.component,
     }),
-    {} as Record<keyof TProfileTemplate, Params>
+    {} as Record<keyof TEditPasswordTemplate, Params>
   );
 
   function validateForm() {
@@ -36,9 +36,9 @@ export function createEditProfileTemplate(goToProfile: () => void) {
     return params.reduce(
       (acc, el, index) => ({
         ...acc,
-        [userParamsConfig[index].name]: el.state.value,
+        [changePassConfig[index].name]: el.state.value,
       }),
-      {} as Record<keyof TProfileTemplate, Params>
+      {} as Record<keyof TEditPasswordTemplate, Params>
     );
   }
 
@@ -55,9 +55,8 @@ export function createEditProfileTemplate(goToProfile: () => void) {
     },
   });
 
-  const editProfileTemplate = new EditProfileTemplate({
+  const editProfileTemplate = new EditPasswordTemplate({
     ...htmlElements,
-    name: "Иван",
     submitButton,
     changeAvatarButton,
     events: {

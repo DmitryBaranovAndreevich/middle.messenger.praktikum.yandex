@@ -218,13 +218,13 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     if (tagWithAttributes) {
       this._removeAttributes();
       const attributes = [
-        ...tagWithAttributes[1].matchAll(/([^\s]*="[^"]*"(?=\s|))/g),
+        ...tagWithAttributes[1].matchAll(/([^\s]*="[^"]+"(?=\s|))/g),
       ];
       attributes.forEach((el) => {
         const [key, value] = el[0]
           .split("=")
           .map((el) => el.replaceAll(`"`, ""));
-        this._element?.setAttribute(key, value);
+        this._element?.setAttribute(key, value || "");
       });
     }
   }
