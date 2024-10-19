@@ -26,6 +26,7 @@ export class ProfileTemplate extends Block<TProfileTemplate> {
                 {{{changePassButton}}}
                 <div class="${styles.profile__splitter}"></div>
                 {{{exitButton}}}
+                {{{popup}}}
               </div>`;
   }
 }

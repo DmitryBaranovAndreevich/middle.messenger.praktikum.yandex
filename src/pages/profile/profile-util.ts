@@ -3,7 +3,7 @@ import { render } from "../../modules";
 import { userParamsConfig } from "./profile-constants";
 import { ProfileTemplate } from "./profile";
 import { TProfileTemplate } from "./profile-types";
-import { Button, creteParams, Params } from "./components";
+import { Button, creteParams, createImgPopup, Params } from "./components";
 import styles from "./profile.module.scss";
 import { createEditProfileTemplate } from "./edit-profile-utils";
 import { createEditPasswordTemplate } from "./edit-password-utils";
@@ -54,9 +54,16 @@ function createProfileTemplate() {
     content: "Поменять аватар",
     className: styles.profile__changeAvatar,
     events: {
-      click: () => console.log("click"),
+      click: openChangeAvatarPopup,
     },
   });
+
+  const popup = new CenterPageLayout({
+    className: styles.profile_dark,
+    content: createImgPopup(),
+  });
+
+  popup.hide();
 
   const profileTemplate = new ProfileTemplate({
     ...htmlElements,
@@ -65,13 +72,17 @@ function createProfileTemplate() {
     changePassButton,
     exitButton,
     changeAvatarButton,
+    popup,
   });
+
+  function openChangeAvatarPopup() {
+    popup.show("flex");
+  }
 
   return profileTemplate;
 }
 
 const layout = new CenterPageLayout({
-  className: "profilePage",
   content: createProfileTemplate(),
 });
 
