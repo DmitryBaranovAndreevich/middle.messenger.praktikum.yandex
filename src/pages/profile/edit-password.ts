@@ -1,9 +1,9 @@
 import { Block, TPropsObj } from "../../modules";
-import { TEditProfileTemplate } from "./profile-types";
+import { TEditPasswordTemplate } from "./profile-types";
 import styles from "./profile.module.scss";
 
-export class EditProfileTemplate extends Block<TEditProfileTemplate> {
-  constructor(props: TPropsObj<TEditProfileTemplate>) {
+export class EditPasswordTemplate extends Block<TEditPasswordTemplate> {
+  constructor(props: TPropsObj<TEditPasswordTemplate>) {
     super(props);
   }
   render() {
@@ -13,13 +13,9 @@ export class EditProfileTemplate extends Block<TEditProfileTemplate> {
                 </div>
                 <form>
                   <ul class="${styles.profile__userParamsContainer}">
-                    {{{email}}}
-                    {{{login}}}
-                    {{{first_name}}}
-                    {{{second_name}}}
-                    {{{display_name}}}
-                    {{{phone}}}    
-                    {{{buttonSubmit}}}
+                    {{{oldPass}}}
+                    {{{newPass}}}
+                    {{{repeat_newPass}}}
                   </ul>
                   {{{submitButton}}}
                 </form>

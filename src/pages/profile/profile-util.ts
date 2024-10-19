@@ -6,13 +6,14 @@ import { TProfileTemplate } from "./profile-types";
 import { Button, creteParams, Params } from "./components";
 import styles from "./profile.module.scss";
 import { createEditProfileTemplate } from "./edit-profile-utils";
+import { createEditPasswordTemplate } from "./edit-password-utils";
 
-
+function createProfileTemplate() {
   const params = userParamsConfig.map((el) =>
     creteParams({
-      errorMessage: "error",
+      errorMessage: "",
       type: el.type,
-      disabled: el.disabled ? "disabled" : "",
+      disabled: `disabled="true"`,
       name: el.name,
       label: el.label,
       value: el.value,
@@ -27,7 +28,6 @@ import { createEditProfileTemplate } from "./edit-profile-utils";
     {} as Record<keyof TProfileTemplate, Params>
   );
 
-
   const editProfileButton = new Button({
     content: "Изменить данные",
     events: {
@@ -38,7 +38,7 @@ import { createEditProfileTemplate } from "./edit-profile-utils";
   const changePassButton = new Button({
     content: "Изменить пароль",
     events: {
-      click: () => console.log("click"),
+      click: onEditPasswordClick,
     },
   });
 
@@ -67,17 +67,29 @@ import { createEditProfileTemplate } from "./edit-profile-utils";
     changeAvatarButton,
   });
 
+  return profileTemplate;
+}
 
 const layout = new CenterPageLayout({
   className: "profilePage",
-  content: profileTemplate,
+  content: createProfileTemplate(),
 });
 
 function onEditProfileClick() {
-  console.log("click")
   layout.setProps({
-    className: "profilePage1",
-    content: createEditProfileTemplate()
+    content: createEditProfileTemplate(goToProfile),
+  });
+}
+
+function onEditPasswordClick() {
+  layout.setProps({
+    content: createEditPasswordTemplate(goToProfile),
+  });
+}
+
+function goToProfile() {
+  layout.setProps({
+    content: createProfileTemplate(),
   });
 }
 

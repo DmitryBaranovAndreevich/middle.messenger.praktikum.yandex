@@ -10,6 +10,7 @@ export function creteParams({
   disabled,
   label,
   value,
+  validateFunc,
 }: {
   errorMessage: string;
   type: string;
@@ -17,11 +18,12 @@ export function creteParams({
   label: string;
   disabled: string;
   value?: string;
+  validateFunc?: (arg: string) => boolean;
 }) {
   const state = {
     value: value || "",
-    isError: false
-  }
+    isError: false,
+  };
   const input = new Input({
     type,
     value: state.value,
@@ -46,7 +48,11 @@ export function creteParams({
   errorLabel.hide();
 
   function validateInput() {
-    if (state.value.length < 2) {
+    if (!validateFunc) {
+      return;
+    }
+
+    if (validateFunc(state.value)) {
       errorLabel.show();
       state.isError = true;
     } else {
