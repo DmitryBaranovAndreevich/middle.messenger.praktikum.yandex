@@ -23,3 +23,11 @@ export type TEditProfileTemplate = Omit<
 export interface ICreateProfile {
   onEditProfileClick: () => void;
 }
+
+export type TEditPasswordTemplate = {
+  oldPass: Params;
+  newPass: Params;
+  repeat_newPass: Params;
+  submitButton: SubmitButton;
+  changeAvatarButton: Button;
+};
