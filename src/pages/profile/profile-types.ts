@@ -1,5 +1,6 @@
 import { Button, Params } from "./components";
 import { Button as SubmitButton } from "../../components";
+import { Block, TProps } from "../../modules";
 
 export type TProfileTemplate = {
   phone: Params;
@@ -13,6 +14,7 @@ export type TProfileTemplate = {
   changePassButton: Button;
   exitButton: Button;
   changeAvatarButton: Button;
+  popup: Block<Record<string, TProps>>;
 };
 
 export type TEditProfileTemplate = Omit<
