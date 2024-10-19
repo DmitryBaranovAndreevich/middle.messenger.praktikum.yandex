@@ -241,9 +241,9 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     return content ? content[1] : "";
   }
 
-  show() {
+  show(style = "block") {
     if (this._element) {
-      this._element.style.display = "block";
+      this._element.style.display = style;
     }
   }
 
