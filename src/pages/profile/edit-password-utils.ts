@@ -1,9 +1,10 @@
 import { changePassConfig } from "./profile-constants";
 import { TEditPasswordTemplate } from "./profile-types";
-import { Button, creteParams, Params } from "./components";
+import { Button, createImgPopup, creteParams, Params } from "./components";
 import { Button as SubmitButton } from "../../components";
 import { EditPasswordTemplate } from "./edit-password";
 import styles from "./profile.module.scss";
+import { CenterPageLayout } from "../../layouts";
 
 export function createEditPasswordTemplate(goToProfile: () => void) {
   const params = changePassConfig.map((el) =>
@@ -51,14 +52,30 @@ export function createEditPasswordTemplate(goToProfile: () => void) {
     content: "Поменять аватар",
     className: styles.profile__changeAvatar,
     events: {
-      click: () => console.log("click"),
+      click: openChangeAvatarPopup,
     },
   });
+
+  const popup = new CenterPageLayout({
+    className: styles.profile_dark,
+    content: createImgPopup(goToEditPassTemplate),
+  });
+
+  popup.hide();
+
+  function openChangeAvatarPopup() {
+    popup.show("flex");
+  }
+
+  function goToEditPassTemplate() {
+    popup.hide()
+  }
 
   const editProfileTemplate = new EditPasswordTemplate({
     ...htmlElements,
     submitButton,
     changeAvatarButton,
+    popup,
     events: {
       submit: (e) => {
         e.preventDefault();

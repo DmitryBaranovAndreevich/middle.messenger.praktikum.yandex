@@ -1,8 +1,9 @@
 import { userParamsConfig } from "./profile-constants";
 import { TProfileTemplate } from "./profile-types";
-import { Button, creteParams, Params } from "./components";
+import { Button, createImgPopup, creteParams, Params } from "./components";
 import { EditProfileTemplate } from "./edit-profile";
 import { Button as SubmitButton } from "../../components";
+import { CenterPageLayout } from "../../layouts";
 import styles from "./profile.module.scss";
 
 export function createEditProfileTemplate(goToProfile: () => void) {
@@ -48,18 +49,34 @@ export function createEditProfileTemplate(goToProfile: () => void) {
   });
 
   const changeAvatarButton = new Button({
-    content: "Поменять аватар",
+    content: `Поменять аватар`,
     className: styles.profile__changeAvatar,
     events: {
-      click: () => console.log("click"),
+      click: openChangeAvatarPopup,
     },
   });
+
+  const popup = new CenterPageLayout({
+    className: styles.profile_dark,
+    content: createImgPopup(goToEditProfileTemplate),
+  });
+
+  popup.hide();
+
+  function openChangeAvatarPopup() {
+    popup.show("flex");
+  }
+
+  function goToEditProfileTemplate() {
+    popup.hide();
+  }
 
   const editProfileTemplate = new EditProfileTemplate({
     ...htmlElements,
     name: "Иван",
     submitButton,
     changeAvatarButton,
+    popup,
     events: {
       submit: (e) => {
         e.preventDefault();
