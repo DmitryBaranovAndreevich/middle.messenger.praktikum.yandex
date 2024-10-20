@@ -1,5 +1,6 @@
 import { Block, TPropsObj } from "../../modules";
 import { TEditPasswordTemplate } from "./profile-types";
+import avatarImg from "../../icons/imgLoader.svg";
 import styles from "./profile.module.scss";
 
 export class EditPasswordTemplate extends Block<TEditPasswordTemplate> {
@@ -9,6 +10,7 @@ export class EditPasswordTemplate extends Block<TEditPasswordTemplate> {
   render() {
     return `<div class="${styles.profile}">
                 <div class="${styles.profile__imgLoader}">
+                  <img src="${avatarImg}" alt="Поменять аватар" class="${styles.profile__img}">
                   {{{changeAvatarButton}}}
                 </div>
                 <form>
@@ -19,6 +21,7 @@ export class EditPasswordTemplate extends Block<TEditPasswordTemplate> {
                   </ul>
                   {{{submitButton}}}
                 </form>
+                {{{popup}}}
               </div>`;
   }
 }

@@ -90,10 +90,10 @@ export const createImgPopup = (goToProfile: () => void) => {
 
   function handleSubmitFormInput(e: Event) {
     e.preventDefault();
+    e.stopPropagation();
     const form = e.target as HTMLFormElement;
     const input = form.elements[0] as HTMLInputElement;
     const files = input.files;
-    console.log(form, files);
     if (files && files.length > 0) {
       state.logo = files[0].name;
       console.log(files[0]);
