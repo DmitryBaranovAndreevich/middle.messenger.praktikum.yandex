@@ -33,38 +33,40 @@ const inputs = LOGIN_INPUT_FIELDS.map((el) =>
   })
 );
 
-const htmlElements = inputs.reduce(
-  (acc, el) => ({
-    ...acc,
-    [el.name]: el.inputWithItem,
-  }),
-  {} as Record<keyof TLoginTemplate, InputWithItem>
-);
+export function createLoginPage() {
+  const htmlElements = inputs.reduce(
+    (acc, el) => ({
+      ...acc,
+      [el.name]: el.inputWithItem,
+    }),
+    {} as Record<keyof TLoginTemplate, InputWithItem>
+  );
 
-const buttonSubmit = new Button({
-  text: "Авторизоваться",
-  type: "submit",
-  className: styles.registerPage__submitButton,
-  events: {
-    click: () => console.log("click"),
-  },
-});
+  const buttonSubmit = new Button({
+    text: "Авторизоваться",
+    type: "submit",
+    className: styles.registerPage__submitButton,
+    events: {
+      click: () => console.log("click"),
+    },
+  });
 
-const link = new Link({
-  content: "Нет аккаунта?",
-  url: "../register/register.html",
-  className: styles.registerPage__link,
-});
+  const link = new Link({
+    content: "Нет аккаунта?",
+    url: "../register/register.html",
+    className: styles.registerPage__link,
+  });
 
-const registerTemplate = new LoginTemplate({
-  ...htmlElements,
-  buttonSubmit,
-  link,
-});
+  const registerTemplate = new LoginTemplate({
+    ...htmlElements,
+    buttonSubmit,
+    link,
+  });
 
-const layout = new CenterPageLayout({
-  className: "loginPage",
-  content: registerTemplate,
-});
+  const layout = new CenterPageLayout({
+    className: "loginPage",
+    content: registerTemplate,
+  });
 
-render("#root", layout);
+  return layout;
+}

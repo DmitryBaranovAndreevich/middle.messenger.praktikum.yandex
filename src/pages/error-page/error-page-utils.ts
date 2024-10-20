@@ -4,7 +4,7 @@ import { render } from "../../modules";
 import { ErrorPageTemplate } from "./error-page";
 import styles from "./error-page.module.scss";
 
-function createErrorPage({
+export function createErrorPage({
   title,
   content,
 }: {
