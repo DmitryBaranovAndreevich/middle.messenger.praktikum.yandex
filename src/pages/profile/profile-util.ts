@@ -1,5 +1,4 @@
 import { CenterPageLayout } from "../../layouts";
-import { render } from "../../modules";
 import { userParamsConfig } from "./profile-constants";
 import { ProfileTemplate } from "./profile";
 import { TProfileTemplate } from "./profile-types";
@@ -8,100 +7,102 @@ import styles from "./profile.module.scss";
 import { createEditProfileTemplate } from "./edit-profile-utils";
 import { createEditPasswordTemplate } from "./edit-password-utils";
 
-function createProfileTemplate() {
-  const params = userParamsConfig.map((el) =>
-    creteParams({
-      errorMessage: "",
-      type: el.type,
-      disabled: `disabled="true"`,
-      name: el.name,
-      label: el.label,
-      value: el.value,
-    })
-  );
+export function createProfile() {
+  function createProfileTemplate() {
+    const params = userParamsConfig.map((el) =>
+      creteParams({
+        errorMessage: "",
+        type: el.type,
+        disabled: `disabled="true"`,
+        name: el.name,
+        label: el.label,
+        value: el.value,
+      })
+    );
 
-  const htmlElements = params.reduce(
-    (acc, el, index) => ({
-      ...acc,
-      [userParamsConfig[index].name]: el.component,
-    }),
-    {} as Record<keyof TProfileTemplate, Params>
-  );
+    const htmlElements = params.reduce(
+      (acc, el, index) => ({
+        ...acc,
+        [userParamsConfig[index].name]: el.component,
+      }),
+      {} as Record<keyof TProfileTemplate, Params>
+    );
 
-  const editProfileButton = new Button({
-    content: "Изменить данные",
-    events: {
-      click: onEditProfileClick,
-    },
-  });
+    const editProfileButton = new Button({
+      content: "Изменить данные",
+      events: {
+        click: onEditProfileClick,
+      },
+    });
 
-  const changePassButton = new Button({
-    content: "Изменить пароль",
-    events: {
-      click: onEditPasswordClick,
-    },
-  });
+    const changePassButton = new Button({
+      content: "Изменить пароль",
+      events: {
+        click: onEditPasswordClick,
+      },
+    });
 
-  const exitButton = new Button({
-    content: "Выйти",
-    className: styles.profile__exit,
-    events: {
-      click: () => console.log("click"),
-    },
-  });
+    const exitButton = new Button({
+      content: "Выйти",
+      className: styles.profile__exit,
+      events: {
+        click: () => console.log("click"),
+      },
+    });
 
-  const changeAvatarButton = new Button({
-    content: "Поменять аватар",
-    className: styles.profile__changeAvatar,
-    events: {
-      click: openChangeAvatarPopup,
-    },
-  });
+    const changeAvatarButton = new Button({
+      content: "Поменять аватар",
+      className: styles.profile__changeAvatar,
+      events: {
+        click: openChangeAvatarPopup,
+      },
+    });
 
-  const popup = new CenterPageLayout({
-    className: styles.profile_dark,
-    content: createImgPopup(goToProfile),
-  });
+    const popup = new CenterPageLayout({
+      className: styles.profile_dark,
+      content: createImgPopup(goToProfile),
+    });
 
-  popup.hide();
+    popup.hide();
 
-  const profileTemplate = new ProfileTemplate({
-    ...htmlElements,
-    name: "Иван",
-    editProfileButton,
-    changePassButton,
-    exitButton,
-    changeAvatarButton,
-    popup,
-  });
+    const profileTemplate = new ProfileTemplate({
+      ...htmlElements,
+      name: "Иван",
+      editProfileButton,
+      changePassButton,
+      exitButton,
+      changeAvatarButton,
+      popup,
+    });
 
-  function openChangeAvatarPopup() {
-    popup.show("flex");
+    function openChangeAvatarPopup() {
+      popup.show("flex");
+    }
+
+    return profileTemplate;
   }
 
-  return profileTemplate;
-}
-
-const layout = new CenterPageLayout({
-  content: createProfileTemplate(),
-});
-
-function onEditProfileClick() {
-  layout.setProps({
-    content: createEditProfileTemplate(goToProfile),
-  });
-}
-
-function onEditPasswordClick() {
-  layout.setProps({
-    content: createEditPasswordTemplate(goToProfile),
-  });
-}
-
-function goToProfile() {
-  layout.setProps({
+  const layout = new CenterPageLayout({
     content: createProfileTemplate(),
   });
-}
 
-render("#root", layout);
+  function onEditProfileClick() {
+    layout.setProps({
+      content: createEditProfileTemplate(goToProfile),
+    });
+  }
+
+  function onEditPasswordClick() {
+    layout.setProps({
+      content: createEditPasswordTemplate(goToProfile),
+    });
+  }
+
+  function goToProfile() {
+    layout.setProps({
+      content: createProfileTemplate(),
+    });
+  }
+
+  return layout;
+}
