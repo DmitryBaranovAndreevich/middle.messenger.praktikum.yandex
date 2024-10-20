@@ -60,7 +60,7 @@ function createProfileTemplate() {
 
   const popup = new CenterPageLayout({
     className: styles.profile_dark,
-    content: createImgPopup(),
+    content: createImgPopup(goToProfile),
   });
 
   popup.hide();
