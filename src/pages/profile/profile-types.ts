@@ -32,4 +32,5 @@ export type TEditPasswordTemplate = {
   repeat_newPass: Params;
   submitButton: SubmitButton;
   changeAvatarButton: Button;
+  popup: Block<Record<string, TProps>>;
 };

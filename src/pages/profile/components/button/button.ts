@@ -8,7 +8,7 @@ export class Button extends Block<TButton> {
   }
   render() {
     return `<button class="${styles.button} {{className}}">
-              {{content}}
+              {{{content}}}
             </button>`;
   }
 }
