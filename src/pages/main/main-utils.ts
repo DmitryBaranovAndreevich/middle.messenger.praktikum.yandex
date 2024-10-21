@@ -1,4 +1,5 @@
 import { render } from "../../modules";
+import { createChatsPage } from "../chats";
 import { createErrorPage } from "../error-page";
 import { createLoginPage } from "../login";
 import { createProfile } from "../profile";
@@ -42,6 +43,10 @@ function createLayout() {
 
     case "/profile": {
       return createProfile();
+    }
+
+    case "/chats": {
+      return createChatsPage()
     }
 
     case "/":

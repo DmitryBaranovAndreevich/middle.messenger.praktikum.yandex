@@ -1,0 +1,22 @@
+@import "../../../../styles/index.scss";
+
+.leftColumn {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  max-width: 300px;
+  border-right: 1px solid $lightColorDisable;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  background: $lightBackground;
+
+  &__link {
+    text-align: end;
+  }
+
+  &__list {
+    width: 100%;
+    padding: 0;
+  }
+}

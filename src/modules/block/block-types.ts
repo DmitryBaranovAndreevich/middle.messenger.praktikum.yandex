@@ -18,5 +18,6 @@ export type TProps =
   | boolean
   | Record<string, (e: Event) => void>
   | Record<string, unknown>
+  | Record<string, unknown>[]
   | IBlock<Record<string, TProps>>
   | null
