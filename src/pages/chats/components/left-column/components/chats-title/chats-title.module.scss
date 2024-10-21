@@ -1,0 +1,69 @@
+@import "../../../../../../styles/index.scss";
+
+.chatsTitle {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 0.25fr 0.45fr 0.25fr;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid $lightColorDisable;
+
+  &:hover {
+    cursor: pointer;
+    background: #e4edfd;
+  }
+
+  &__img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__label{
+    color: $textColorDark;
+  }
+
+  &__title {
+    margin: 0;
+    font: 600 13px/13px "Inter";
+  }
+
+  &__comment {
+    display: inline-block;
+    margin: 5px 0 0;
+    height: 30px;
+    overflow: hidden;
+    font: 500 13px/13px "Inter";
+    color: $colorDisable;
+  }
+
+  &__timerWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__time {
+    margin: 0;
+    font: 500 8px/8px "Inter";
+    color: $colorDisable;
+  }
+
+  &__counterWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background: $colorPrimary;
+  }
+
+  &__counter {
+    margin: 0;
+    color: $textColorLight;
+  }
+}
