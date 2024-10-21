@@ -1,12 +1,10 @@
-@import "../../partials/partials.scss";
-@import "../../partials/pages//profile/profile.scss";
+@import "../../styles/index.scss";
 
 .profile {
   width: 100%;
   max-width: 510px;
 
   &_dark {
-    
     background: $popupBackground;
   }
 
