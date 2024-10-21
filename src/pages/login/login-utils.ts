@@ -1,7 +1,6 @@
 import { CenterPageLayout } from "../../layouts";
 import { getInputWithItem } from "../../components";
 import { Button, InputWithItem, Link } from "../../components";
-import { render } from "../../modules";
 import { TLoginTemplate } from "./login-types";
 import { LoginTemplate } from "./login";
 import styles from "./login.module.scss";
@@ -45,16 +44,13 @@ export function createLoginPage() {
   const buttonSubmit = new Button({
     text: "Авторизоваться",
     type: "submit",
-    className: styles.registerPage__submitButton,
-    events: {
-      click: () => console.log("click"),
-    },
+    className: styles.loginPage__submitButton,
   });
 
   const link = new Link({
     content: "Нет аккаунта?",
-    url: "../register/register.html",
-    className: styles.registerPage__link,
+    url: `${window.location.origin}/register`,
+    className: styles.loginPage__link,
   });
 
   const registerTemplate = new LoginTemplate({

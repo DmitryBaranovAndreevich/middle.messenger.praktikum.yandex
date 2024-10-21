@@ -22,7 +22,7 @@ function createMainPage() {
 
 function createLayout() {
   const location = window.location.pathname;
- 
+
   switch (location) {
     case "/400": {
       return createErrorPage({ content: "Не туда попали", title: "404" });
@@ -51,8 +51,26 @@ function createLayout() {
   }
 }
 
-window.addEventListener("popstate", function (e) {
+render("#root", createLayout());
+
+window.addEventListener("popstate", function () {
   render("#root", createLayout());
 });
 
-render("#root", createLayout());
+let oldHref = document.location.href;
+
+window.addEventListener("load", function () {
+  const bodyList = document.querySelector("body");
+  const observer = new MutationObserver(function () {
+    if (oldHref != document.location.href) {
+      oldHref = document.location.href;
+      render("#root", createLayout());
+    }
+  });
+
+  const config = {
+    childList: true,
+    subtree: true,
+  };
+  bodyList && observer.observe(bodyList, config);
+});
