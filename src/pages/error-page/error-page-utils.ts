@@ -13,7 +13,7 @@ export function createErrorPage({
 }) {
   const link = new Link({
     content: "На страницу чатов",
-    url: "../chats/chats.html",
+    url: `${window.location.origin}/chats`,
     className: styles.errorPage__link,
   });
 

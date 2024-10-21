@@ -36,7 +36,7 @@ export function createRegister() {
 
   const link = new Link({
     content: "Нет аккаунта?",
-    url: "../register/register.html",
+    url: `${window.location.origin}/register`,
     className: styles.registerPage__link,
   });
 
