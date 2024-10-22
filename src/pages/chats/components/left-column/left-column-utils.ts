@@ -1,4 +1,5 @@
 import { Link } from "../../../../components";
+import { ERouterEvents, eventBusRouter } from "../../../utils";
 import { ChatsTitle, Input } from "./components";
 import { LeftColumnTemplate } from "./left-column";
 import { TChatsData } from "./left-column-types";
@@ -32,6 +33,7 @@ export function createLeftColumn(
         e.preventDefault();
         const a = e.target as HTMLLinkElement;
         history.pushState({}, "", a.href);
+        eventBusRouter.emit(ERouterEvents.URL_CHANGE);
       },
     },
   });

@@ -4,6 +4,7 @@ import { createErrorPage } from "../error-page";
 import { createLoginPage } from "../login";
 import { createProfile } from "../profile";
 import { createRegister } from "../register";
+import { ERouterEvents, eventBusRouter } from "../utils";
 import { MainTemplate } from "./main";
 
 function createMainPage() {
@@ -46,7 +47,7 @@ function createLayout() {
     }
 
     case "/chats": {
-      return createChatsPage()
+      return createChatsPage();
     }
 
     case "/":
@@ -56,10 +57,16 @@ function createLayout() {
   }
 }
 
-render("#root", createLayout());
+const renderRoot = () => {
+  render("#root", createLayout());
+};
+
+renderRoot();
+
+eventBusRouter.on(ERouterEvents.URL_CHANGE, renderRoot);
 
 window.addEventListener("popstate", function () {
-  render("#root", createLayout());
+  eventBusRouter.emit(ERouterEvents.URL_CHANGE);
 });
 
 let oldHref = document.location.href;
@@ -69,7 +76,7 @@ window.addEventListener("load", function () {
   const observer = new MutationObserver(function () {
     if (oldHref != document.location.href) {
       oldHref = document.location.href;
-      render("#root", createLayout());
+      eventBusRouter.emit(ERouterEvents.URL_CHANGE);
     }
   });
 
