@@ -7,7 +7,7 @@ export class RightColumnTemplate extends Block<TRightColumnTemplate> {
     super(props);
   }
   render() {
-    return `<div class="${styles.chatsList}">
+    return `<div class="${styles.rightColumn}">
               {{{content}}}
             </div>`;
   }
