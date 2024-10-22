@@ -1,0 +1,37 @@
+@import "../../../../../../styles/index.scss";
+
+.chats {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  padding: 0;
+
+  &__container {
+    display: flex;
+    font: 500 11px/11px "Inter";
+  }
+
+  &__mes {
+    max-width: 400px;
+    padding: 11px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  &__ownerMes {
+    background: #e4edfd;
+    margin: 0 0 0 auto;
+    border-bottom-right-radius: 0;
+  }
+
+  &__anotherMes {
+    background: $lightColorDisable;
+  }
+
+  &__time {
+    font: 600 6px/6px "Inter";
+    margin: 5px 0;
+  }
+}

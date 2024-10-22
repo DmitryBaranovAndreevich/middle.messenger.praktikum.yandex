@@ -6,3 +6,12 @@ export type TLeftColumnTemplate = {
   searchInput: Input;
   chatsList: ChatsTitle;
 };
+
+export type TChatsData = {
+  id: string;
+  title: string;
+  url: string;
+  comment: { text: string; owner: boolean; time: string }[];
+  count: number;
+  activeChat?: string;
+};

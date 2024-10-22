@@ -1,47 +1,27 @@
 import { Link } from "../../../../components";
 import { ChatsTitle, Input } from "./components";
 import { LeftColumnTemplate } from "./left-column";
-import logo from "../../../../icons/imgLoader.svg";
+import { TChatsData } from "./left-column-types";
 import styles from "./left-column.module.scss";
 
-function getDataStr(d = Date.now()) {
-  const date = new Date(d);
-  const h = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-  const m =
-    date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-
-  return `${h} : ${m}`;
-}
-
-const CHATS_LIST = [
-  {
-    title: "Поиграть",
-    url: logo,
-    comment: { text: "Мой коммент", owner: true },
-    time: getDataStr(),
-    count: 2,
-  },
-  {
-    title: "Поиграть",
-    url: logo,
-    comment: { text: "Надоела эта верстка", owner: false },
-    time: getDataStr(),
-    count: 2,
-  },
-  {
-    title: "Поиграть",
-    url: logo,
-    comment: {
-      text: "Мой коммент очень очень много раз коммент коммент коммент коммент",
-      owner: true,
+export function createLeftColumn(
+  chats: TChatsData[],
+  selectId: (id: string) => void
+) {
+  const chatsList = new ChatsTitle({
+    chats: chats.map((el) => ({
+      ...el,
+      comment: el.comment[el.comment.length - 1],
+    })),
+    events: {
+      click: (e) => {
+        const element = e.target as HTMLElement;
+        const parent = element.closest("li");
+        const activeChat = parent?.getAttribute("data-chat-id");
+        activeChat && selectId(activeChat);
+      },
     },
-    time: getDataStr(),
-    count: 2,
-  },
-];
-
-export function createLeftColumn() {
-  const chatsList = new ChatsTitle({ chats: CHATS_LIST });
+  });
 
   const linkButton = new Link({
     content: "В профиль >",

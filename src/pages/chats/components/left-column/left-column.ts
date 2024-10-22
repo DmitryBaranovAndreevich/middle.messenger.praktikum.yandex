@@ -12,9 +12,7 @@ export class LeftColumnTemplate extends Block<TLeftColumnTemplate> {
               <form>
                 {{{searchInput}}}
               </form>  
-              <ul class="${styles.leftColumn__list}">
-                {{{chatsList}}}
-              </ul>
+              {{{chatsList}}}
             </div>`;
   }
 }

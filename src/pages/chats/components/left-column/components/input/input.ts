@@ -1,4 +1,3 @@
-
 import { Block, TPropsObj } from "../../../../../../modules";
 import { TInput } from "./input-types";
 import styles from "./input.module.scss";
