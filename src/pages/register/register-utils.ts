@@ -5,6 +5,7 @@ import { TRegisterTemplate } from "./register-types";
 import { Button, InputWithItem, Link } from "../../components";
 import { RegisterTemplate } from "./register";
 import styles from "./register.module.scss";
+import { ERouterEvents, eventBusRouter } from "../utils";
 
 export function createRegister() {
   const inputs = registerParamsConfig.map((el) =>
@@ -34,16 +35,9 @@ export function createRegister() {
     },
   });
 
-  const link = new Link({
-    content: "Нет аккаунта?",
-    url: `${window.location.origin}/register`,
-    className: styles.registerPage__link,
-  });
-
   const registerTemplate = new RegisterTemplate({
     ...htmlElements,
     buttonSubmit,
-    link,
   });
 
   const layout = new CenterPageLayout({

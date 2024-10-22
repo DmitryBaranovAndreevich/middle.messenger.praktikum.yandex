@@ -6,6 +6,7 @@ import { Button, creteParams, createImgPopup, Params } from "./components";
 import styles from "./profile.module.scss";
 import { createEditProfileTemplate } from "./edit-profile-utils";
 import { createEditPasswordTemplate } from "./edit-password-utils";
+import { ERouterEvents, eventBusRouter } from "../utils";
 
 export function createProfile() {
   function createProfileTemplate() {
@@ -46,7 +47,10 @@ export function createProfile() {
       content: "Выйти",
       className: styles.profile__exit,
       events: {
-        click: () => console.log("click"),
+        click: () => {
+          history.pushState({}, "", `${window.location.origin}/chats`);
+          eventBusRouter.emit(ERouterEvents.URL_CHANGE);
+        },
       },
     });
 

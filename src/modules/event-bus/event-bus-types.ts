@@ -1,8 +1,8 @@
-import { EEvents, TCallBack } from "../../types";
+import { TCallBack } from "../../types";
 
-export interface IEventBus {
-  listeners: Partial<Record<EEvents, TCallBack[]>>;
-  on: (event: EEvents, callback: TCallBack) => void;
-  off: (event: EEvents, callback: TCallBack) => void;
-  emit: (event: EEvents, ...args: any[]) => void;
+export interface IEventBus<T extends string | number | symbol> {
+  listeners: Partial<Record<T, TCallBack[]>>;
+  on: (event: T, callback: TCallBack) => void;
+  off: (event: T, callback: TCallBack) => void;
+  emit: (event: T, ...args: any[]) => void;
 }
