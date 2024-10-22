@@ -2,10 +2,9 @@ import { registerParamsConfig } from "./register-constants";
 import { CenterPageLayout } from "../../layouts";
 import { getInputWithItem } from "../../components";
 import { TRegisterTemplate } from "./register-types";
-import { Button, InputWithItem, Link } from "../../components";
+import { Button, InputWithItem } from "../../components";
 import { RegisterTemplate } from "./register";
 import styles from "./register.module.scss";
-import { ERouterEvents, eventBusRouter } from "../utils";
 
 export function createRegister() {
   const inputs = registerParamsConfig.map((el) =>
