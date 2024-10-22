@@ -1,0 +1,51 @@
+export const registerParamsConfig = [
+  {
+    label: "Почта",
+    value: "pochta@yandex.ru",
+    disabled: true,
+    name: "email",
+    type: "text",
+  },
+  {
+    label: "Логин",
+    value: "ivanivanov",
+    disabled: true,
+    name: "login",
+    type: "text",
+  },
+  {
+    label: "Имя",
+    value: "Иван",
+    disabled: true,
+    name: "first_name",
+    type: "text",
+  },
+  {
+    label: "Фамилия",
+    value: "Иванов",
+    disabled: true,
+    name: "second_name",
+    type: "text",
+  },
+  {
+    label: "Телефон",
+    value: "+7 (909) 967 30 30",
+    disabled: true,
+    name: "phone",
+    type: "text",
+  },
+  {
+    label: "Пароль",
+    value: "123456789",
+    disabled: false,
+    name: "password",
+    type: "password",
+  },
+  {
+    label: "Пароль еще раз",
+    value: "123456789",
+    disabled: false,
+    name: "repeat_password",
+    type: "password",
+  },
+];

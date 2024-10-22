@@ -1,0 +1,12 @@
+@import "../../styles/index.scss";
+
+.linkToPages {
+  display: block;
+  color: $colorPrimary;
+  text-decoration: none;
+  font: 500 11px/11px "Inter";
+
+  &:hover {
+    opacity: $buttonsSelectOpacity;
+  }
+}

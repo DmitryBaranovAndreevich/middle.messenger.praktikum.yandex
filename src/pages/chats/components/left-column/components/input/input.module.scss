@@ -1,0 +1,30 @@
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: #efefef;
+  border-radius: 5px;
+  padding: 6px 20px;
+  margin: 20px 0;
+  box-sizing: border-box;
+
+  &::placeholder {
+    text-align: center;
+  }
+
+  &::-webkit-input-placeholder {
+    text-align: center;
+  }
+
+  &:-moz-placeholder {
+    text-align: center;
+  }
+
+  &::-moz-placeholder {
+    text-align: center;
+  }
+
+  &:-ms-input-placeholder {
+    text-align: center;
+  }
+}
