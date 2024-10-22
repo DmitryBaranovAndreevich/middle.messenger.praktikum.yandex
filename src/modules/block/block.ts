@@ -10,7 +10,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
   _id: string;
   props: TPropsObj<T> & { _id: string };
   children: Record<string, Block<Record<string, TProps>>>;
-  eventBus: () => IEventBus;
+  eventBus: () => IEventBus<EEvents>;
   _state: { value: TProps } = { value: null };
 
   constructor(propsAndChildren: TPropsObj<T>) {
@@ -45,7 +45,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     this.state = newState;
   }
 
-  _registerEvents(eventBus: IEventBus) {
+  _registerEvents(eventBus: IEventBus<EEvents>) {
     eventBus.on(EEvents.INIT, this.init.bind(this));
     eventBus.on(EEvents.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(EEvents.FLOW_RENDER, this._render.bind(this));

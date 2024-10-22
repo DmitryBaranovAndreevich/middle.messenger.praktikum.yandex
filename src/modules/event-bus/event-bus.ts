@@ -1,11 +1,11 @@
-import { EEvents, TCallBack } from "../../types";
+import { TCallBack } from "../../types";
 import { IEventBus } from "./event-bus-types";
 
-export class EventBus implements IEventBus {
-  listeners: IEventBus["listeners"] = {};
+export class EventBus<T extends string | number | symbol> implements IEventBus<T> {
+  listeners: IEventBus<T>["listeners"] = {};
   constructor() {}
 
-  on(event: EEvents, callback: TCallBack) {
+  on(event: T, callback: TCallBack) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -13,9 +13,9 @@ export class EventBus implements IEventBus {
     this.listeners[event].push(callback);
   }
 
-  off(event: EEvents, callback: TCallBack) {
+  off(event: T, callback: TCallBack) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      throw new Error(`Нет события: ${String(event)}`);
     }
 
     this.listeners[event] = this.listeners[event].filter(
@@ -23,9 +23,9 @@ export class EventBus implements IEventBus {
     );
   }
 
-  emit(event: EEvents, ...args: any[]) {
+  emit(event: T, ...args: any[]) {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      throw new Error(`Нет события: ${String(event)}`);
     }
 
     this.listeners[event].forEach(function (listener) {

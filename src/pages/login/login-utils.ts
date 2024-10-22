@@ -4,6 +4,7 @@ import { Button, InputWithItem, Link } from "../../components";
 import { TLoginTemplate } from "./login-types";
 import { LoginTemplate } from "./login";
 import styles from "./login.module.scss";
+import { ERouterEvents, eventBusRouter } from "../utils";
 
 const LOGIN_INPUT_FIELDS = [
   {
@@ -51,6 +52,14 @@ export function createLoginPage() {
     content: "Нет аккаунта?",
     url: `${window.location.origin}/register`,
     className: styles.loginPage__link,
+    events: {
+      click: (e: Event) => {
+        e.preventDefault();
+        const a = e.target as HTMLLinkElement;
+        history.pushState({}, "", a.href);
+        eventBusRouter.emit(ERouterEvents.URL_CHANGE);
+      },
+    },
   });
 
   const registerTemplate = new LoginTemplate({
