@@ -7,9 +7,9 @@ export class ChatsTitle extends Block<TChatsTitle> {
     super(props);
   }
   render() {
-    return `<div>
+    return `<ul class="${styles.chatsTitle__wrapper}">
             {{#each chats}}
-            <li class="${styles.chatsTitle}">
+            <li class="${styles.chatsTitle} {{activeChat}}" data-chat-id="\{{id}}">
               <img class="${styles.chatsTitle__img}" src="\{{url}}" alt="chat logo"/>
                 <div class="${styles.chatsTitle__titleWrapper}">
                   <p class="${styles.chatsTitle__title}">\{{title}}</p>
@@ -30,6 +30,6 @@ export class ChatsTitle extends Block<TChatsTitle> {
                 </div>
             </li>
             {{/each}}
-            </div>`;
+             </ul>`;
   }
 }

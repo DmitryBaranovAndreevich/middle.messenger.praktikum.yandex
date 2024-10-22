@@ -1,3 +1,3 @@
 export type TInput = {
-    name: string
-}
+  name: string;
+};
