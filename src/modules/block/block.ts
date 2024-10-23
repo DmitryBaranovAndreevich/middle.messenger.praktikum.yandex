@@ -103,7 +103,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
 
   _getChildren(propsAndChildren: TPropsObj<T>) {
     const children: Record<string, Block<Record<string, TProps>>> = {};
-    const props: TPropsObj<Record<string, any>> = {};
+    const props: TPropsObj<Record<string, TProps>> = {};
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
@@ -180,7 +180,7 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
   _makePropsProxy(props: TPropsObj<T> & { _id: string }) {
     const self = this;
     const propsProxy = new Proxy(props, {
-      set(target, props: string, value) {
+      set(target, props: string, value)  {
         self._removeEvents();
         const oldProp = target[props];
         if (self.children[props]) {
