@@ -2,15 +2,11 @@ import { Chat, Message, NoChatsTitle } from "./components";
 import { RightColumnTemplate } from "./right-column";
 
 export function createRightColumn(
-  chatContent?: Record<string, string | number | boolean>[]
+  chatContent?: Record<string, string | number | boolean>[],
 ) {
   const noChatsTitle = new NoChatsTitle({});
 
-  const message = new Message({});
-
-  const rightColumn = new RightColumnTemplate({
-    content: chatContent ? new Chat({ chats: chatContent }) : noChatsTitle,
-    message,
+  const message = new Message({
     events: {
       submit: (e) => {
         e.preventDefault();
@@ -24,6 +20,11 @@ export function createRightColumn(
         console.log(inputMessage);
       },
     },
+  });
+
+  const rightColumn = new RightColumnTemplate({
+    content: chatContent ? new Chat({ chats: chatContent }) : noChatsTitle,
+    message,
   });
 
   return rightColumn;
