@@ -1,4 +1,4 @@
-import { Chat, NoChatsTitle } from "./components";
+import { Chat, Message, NoChatsTitle } from "./components";
 import { RightColumnTemplate } from "./right-column";
 
 export function createRightColumn(
@@ -6,8 +6,24 @@ export function createRightColumn(
 ) {
   const noChatsTitle = new NoChatsTitle({});
 
+  const message = new Message({});
+
   const rightColumn = new RightColumnTemplate({
     content: chatContent ? new Chat({ chats: chatContent }) : noChatsTitle,
+    message,
+    events: {
+      submit: (e) => {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const input = form.elements[0] as HTMLInputElement;
+        const inputMessage = input.value;
+        if (!inputMessage || inputMessage.length === 0) {
+          return;
+        }
+
+        console.log(inputMessage);
+      },
+    },
   });
 
   return rightColumn;

@@ -9,6 +9,7 @@ export class RightColumnTemplate extends Block<TRightColumnTemplate> {
   render() {
     return `<div class="${styles.rightColumn}">
               {{{content}}}
+              {{{message}}}
             </div>`;
   }
 }
