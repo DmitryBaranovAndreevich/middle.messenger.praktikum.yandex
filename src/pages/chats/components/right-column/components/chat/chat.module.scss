@@ -2,6 +2,7 @@
 
 .chats {
   width: 100%;
+  height: calc(100vh - 120px);
   list-style-type: none;
   display: flex;
   gap: 10px;
