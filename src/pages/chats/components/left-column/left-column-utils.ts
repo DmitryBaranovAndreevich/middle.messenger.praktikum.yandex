@@ -7,7 +7,7 @@ import styles from "./left-column.module.scss";
 
 export function createLeftColumn(
   chats: TChatsData[],
-  selectId: (id: string) => void
+  selectId: (id: string) => void,
 ) {
   const chatsList = new ChatsTitle({
     chats: chats.map((el) => ({
@@ -19,7 +19,9 @@ export function createLeftColumn(
         const element = e.target as HTMLElement;
         const parent = element.closest("li");
         const activeChat = parent?.getAttribute("data-chat-id");
-        activeChat && selectId(activeChat);
+        if (activeChat) {
+          selectId(activeChat);
+        }
       },
     },
   });
