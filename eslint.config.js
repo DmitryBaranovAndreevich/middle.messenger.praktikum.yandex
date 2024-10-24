@@ -12,7 +12,7 @@ export default tsLint.config(
     },
   },
   {
-    ignores: ["node_modules", "dist"],
+    ignores: ["node_modules", "dist", "**.*js"],
   },
   js.configs.recommended,
   ...tsLint.configs.recommended,
@@ -35,7 +35,9 @@ export default tsLint.config(
       "prefer-const": "error",
       curly: "error",
       "@typescript-eslint/no-empty-object-type": "off",
-      "no-useless-escape": "off"
+      "no-useless-escape": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-this-alias": "off",
     },
   },
 );
