@@ -73,7 +73,9 @@ export class Block<T extends Record<string, TProps>> implements IBlock<T> {
     });
   }
 
-  componentDidMount(oldProps: TPropsObj<T>) {}
+
+  componentDidMount(_oldProps: TPropsObj<T>) {
+  }
 
   dispatchComponentDidMount() {
     this.eventBus().emit(EEvents.FLOW_CDM);

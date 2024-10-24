@@ -23,7 +23,7 @@ export class EventBus<T extends string | number | symbol> implements IEventBus<T
     );
   }
 
-  emit(event: T, ...args: any[]) {
+  emit(event: T, ...args: unknown[]) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${String(event)}`);
     }

@@ -1,4 +1,4 @@
-export type TCallBack = (...args: any[]) => void;
+export type TCallBack = <S extends TProps<S>>(...args: S[]) => void;
 
 export enum Etag {
   DIV = "div",
@@ -8,3 +8,5 @@ export enum Etag {
   PARAGRAPH = "p",
   LINK = "a",
 }
+
+export type TProps<T> =  T extends unknown ? T : never

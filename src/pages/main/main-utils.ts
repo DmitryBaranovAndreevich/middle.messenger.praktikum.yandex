@@ -69,20 +69,20 @@ window.addEventListener("popstate", function () {
   eventBusRouter.emit(ERouterEvents.URL_CHANGE);
 });
 
-let oldHref = document.location.href;
+// let oldHref = document.location.href;
 
-window.addEventListener("load", function () {
-  const bodyList = document.querySelector("body");
-  const observer = new MutationObserver(function () {
-    if (oldHref != document.location.href) {
-      oldHref = document.location.href;
-      eventBusRouter.emit(ERouterEvents.URL_CHANGE);
-    }
-  });
+// window.addEventListener("load", function () {
+//   const bodyList = document.querySelector("body");
+//   const observer = new MutationObserver(function () {
+//     if (oldHref != document.location.href) {
+//       oldHref = document.location.href;
+//       eventBusRouter.emit(ERouterEvents.URL_CHANGE);
+//     }
+//   });
 
-  const config = {
-    childList: true,
-    subtree: true,
-  };
-  bodyList && observer.observe(bodyList, config);
-});
+//   const config = {
+//     childList: true,
+//     subtree: true,
+//   };
+//   bodyList && observer.observe(bodyList, config);
+// });

@@ -1,10 +1,11 @@
+import { EEvents } from "../../types";
 import { IEventBus } from "../event-bus";
 
 export interface IBlock<T> {
   _element: HTMLElement | null;
   _meta: { tagName: string; props: T };
   props: T;
-  eventBus: () => IEventBus;
+  eventBus: () => IEventBus<EEvents>;
   render: () => string | void;
 }
 export type TPropsObj<T> = {
@@ -20,4 +21,4 @@ export type TProps =
   | Record<string, unknown>
   | Record<string, unknown>[]
   | IBlock<Record<string, TProps>>
-  | null
+  | null;
