@@ -1,1 +1,16 @@
-https://github.com/DmitryBaranovAndreevich/middle.messenger.praktikum.yandex/pull/3
+Проект "Messenger".
+
+Реализация задания 2 спринта: 
+деплой: https://671bf7ee8cd82e00080004dc--messendger.netlify.app/
+На стартовой странице имеются ссылки на: 404, 500, login, register, profile и страницу чатов.
+При разработке использовался фреймворк Handelbars и препоцессор SCSS.
+Роутинг осуществляется на стороне клиента.
+К проекту подключены eslint и stylelint
+
+команда для сборки: npm run build
+
+команда для дев.разработки: npm run dev
+
+запустить линтер: npm run lint
+
+dev-сервер стартует на 3000 порту
