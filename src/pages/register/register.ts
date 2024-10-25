@@ -9,7 +9,7 @@ export class RegisterTemplate extends Block<TRegisterTemplate> {
   render() {
     return `<div class="${styles.registerPage}">
                 <p class="${styles.registerPage__title}">Регистрация</p>
-                <form class="${styles.registerPage__formWrapper}" name="registerForm">
+                <form class="${styles.registerPage__formWrapper}" name="registerForm" novalidate>
                   {{{email}}}
                   {{{login}}}
                   {{{first_name}}}
