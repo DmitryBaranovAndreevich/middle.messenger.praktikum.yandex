@@ -8,15 +8,20 @@ export function getInputWithItem({
   error,
   type,
   name,
-  disabled
+  disabled,
+  validateFunc,
 }: {
   item: string;
   error: string;
   type: string;
   name: string;
-  disabled: boolean
+  disabled: boolean;
+  validateFunc?: (arg: string) => boolean;
 }) {
-  let isError = false;
+  const state = {
+    isError: false,
+    value: "",
+  };
   const input = new Input({
     type,
     className: styles.inputWithItem__input,
@@ -25,9 +30,8 @@ export function getInputWithItem({
     events: {
       blur: (e: Event) => {
         const input = e.target as HTMLInputElement;
-        if (input.value.length > 5) {
-          setError(true);
-        }
+        state.value = input.value;
+        validateInputValue();
       },
       input: () => {
         setError(false);
@@ -55,14 +59,22 @@ export function getInputWithItem({
     errorLabel,
   });
 
+  function validateInputValue() {
+    if (validateFunc && validateFunc(state.value)) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }
+
   function setError(key: boolean) {
-    isError = key;
-    if (isError) {
+    state.isError = key;
+    if (state.isError) {
       errorLabel.show();
     } else {
       errorLabel.hide();
     }
   }
 
-  return { inputWithItem, input, setError, name };
+  return { inputWithItem, state, name, validateInputValue };
 }

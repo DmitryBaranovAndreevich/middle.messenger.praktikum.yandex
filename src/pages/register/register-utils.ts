@@ -12,9 +12,10 @@ export function createRegister() {
       type: el.type,
       name: el.name,
       item: el.label,
-      error: "error",
+      error: el.errorMessage,
       disabled: el.disabled,
-    })
+      validateFunc: el.validateFunc,
+    }),
   );
 
   const htmlElements = inputs.reduce(
@@ -22,21 +23,36 @@ export function createRegister() {
       ...acc,
       [el.name]: el.inputWithItem,
     }),
-    {} as Record<keyof TRegisterTemplate, InputWithItem>
+    {} as Record<keyof TRegisterTemplate, InputWithItem>,
   );
 
   const buttonSubmit = new Button({
     text: "Авторизоваться",
     type: "submit",
     className: styles.registerPage__submitButton,
-    events: {
-      click: () => console.log("click"),
-    },
   });
 
   const registerTemplate = new RegisterTemplate({
     ...htmlElements,
     buttonSubmit,
+    events: {
+      submit: (e) => {
+        e.preventDefault();
+        inputs.forEach((input) => {
+          input.validateInputValue();
+        });
+        const isError = inputs.find((el) => el.state.isError);
+        if (isError) {
+          return;
+        }
+
+        const formValue = inputs.reduce(
+          (acc, el) => ({ ...acc, [el.name]: el.state.value }),
+          {},
+        );
+        console.log(formValue);
+      },
+    },
   });
 
   const layout = new CenterPageLayout({
