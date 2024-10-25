@@ -5,6 +5,7 @@ import { TLoginTemplate } from "./login-types";
 import { LoginTemplate } from "./login";
 import styles from "./login.module.scss";
 import { ERouterEvents, eventBusRouter } from "../utils";
+import { validateUserLogin, validateUserPassword } from "../../utils";
 
 const LOGIN_INPUT_FIELDS = [
   {
@@ -13,6 +14,8 @@ const LOGIN_INPUT_FIELDS = [
     disabled: false,
     name: "login",
     type: "text",
+    errorMessage: "Допустимы только буквы английского алфавита, цыфры, - и _",
+    validateFunc: validateUserLogin,
   },
   {
     label: "Пароль",
@@ -20,6 +23,9 @@ const LOGIN_INPUT_FIELDS = [
     disabled: false,
     name: "password",
     type: "password",
+    errorMessage:
+      "Пароль должен быть от 8 до 50 символов и содержать заглавные буквы и цифры",
+    validateFunc: validateUserPassword,
   },
 ];
 
@@ -28,9 +34,10 @@ const inputs = LOGIN_INPUT_FIELDS.map((el) =>
     type: el.type,
     name: el.name,
     item: el.label,
-    error: "error",
+    error: el.errorMessage,
     disabled: el.disabled,
-  })
+    validateFunc: el.validateFunc,
+  }),
 );
 
 export function createLoginPage() {
@@ -39,7 +46,7 @@ export function createLoginPage() {
       ...acc,
       [el.name]: el.inputWithItem,
     }),
-    {} as Record<keyof TLoginTemplate, InputWithItem>
+    {} as Record<keyof TLoginTemplate, InputWithItem>,
   );
 
   const buttonSubmit = new Button({
@@ -66,6 +73,24 @@ export function createLoginPage() {
     ...htmlElements,
     buttonSubmit,
     link,
+    events: {
+      submit: (e) => {
+        e.preventDefault();
+        inputs.forEach((input) => {
+          input.validateInputValue();
+        });
+        const isError = inputs.find((el) => el.state.isError);
+        if (isError) {
+          return;
+        }
+
+        const formValue = inputs.reduce(
+          (acc, el) => ({ ...acc, [el.name]: el.state.value }),
+          {},
+        );
+        console.log(formValue);
+      },
+    },
   });
 
   const layout = new CenterPageLayout({
