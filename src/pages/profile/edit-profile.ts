@@ -13,7 +13,7 @@ export class EditProfileTemplate extends Block<TEditProfileTemplate> {
                   <img src="${avatarImg}" alt="Поменять аватар" class="${styles.profile__img}">
                   {{{changeAvatarButton}}}
                 </div>
-                <form>
+                <form novalidate>
                   <ul class="${styles.profile__userParamsContainer}">
                     {{{email}}}
                     {{{login}}}

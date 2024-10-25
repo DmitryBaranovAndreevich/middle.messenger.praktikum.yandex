@@ -1,4 +1,4 @@
-@import "../../../../../../styles/index.scss";
+@import "../../../../../../styles/index";
 
 .chatsTitle {
   list-style-type: none;
@@ -33,7 +33,9 @@
 
   &__title {
     margin: 0;
-    font: 600 13px/13px "Inter";
+    font:
+      600 13px/13px "Inter",
+      sans-serif;
   }
 
   &__comment {
@@ -41,7 +43,9 @@
     margin: 5px 0 0;
     height: 30px;
     overflow: hidden;
-    font: 500 13px/13px "Inter";
+    font:
+      500 13px/13px "Inter",
+      sans-serif;
     color: $colorDisable;
   }
 
@@ -54,7 +58,9 @@
 
   &__time {
     margin: 0;
-    font: 500 8px/8px "Inter";
+    font:
+      500 8px/8px "Inter",
+      sans-serif;
     color: $colorDisable;
   }
 

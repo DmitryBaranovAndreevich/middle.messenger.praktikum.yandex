@@ -1,4 +1,4 @@
-@import "../../../../../../styles/index.scss";
+@import "../../../../../../styles/index";
 
 .chats {
   width: 100%;
@@ -12,7 +12,7 @@
 
   &__container {
     display: flex;
-    font: 500 11px/11px "Inter";
+    font: 500 11px/11px "Inter", sans-serif;
   }
 
   &__mes {
@@ -33,7 +33,7 @@
   }
 
   &__time {
-    font: 600 6px/6px "Inter";
+    font: 600 6px/6px "Inter", sans-serif;
     margin: 5px 0;
   }
 }

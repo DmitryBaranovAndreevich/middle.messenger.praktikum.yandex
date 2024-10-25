@@ -1,4 +1,4 @@
-@import "../../../../styles/index.scss";
+@import "../../../../styles/index";
 
 .params {
   position: relative;
@@ -12,7 +12,9 @@
 
   &__title {
     margin: 0;
-    font: 500 13px/13px "Inter";
+    font:
+      500 13px/13px "Inter",
+      sans-serif;
   }
 
   &__input {
@@ -29,7 +31,9 @@
 
   &__error {
     color: $colorError;
-    font: 500 9px/9px "Inter";
+    font:
+      500 9px/9px "Inter",
+      sans-serif;
     position: absolute;
     pointer-events: none;
     left: 0;

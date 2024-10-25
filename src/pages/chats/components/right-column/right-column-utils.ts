@@ -17,7 +17,7 @@ export function createRightColumn(
           return;
         }
 
-        console.log(inputMessage);
+        console.log({ message: inputMessage });
       },
     },
   });

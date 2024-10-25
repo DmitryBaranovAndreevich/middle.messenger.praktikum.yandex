@@ -1,4 +1,4 @@
-@import "../../styles/index.scss";
+@import "../../styles/index";
 
 .loginPage {
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   max-width: 380px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 6px 0 rgba(0 0 0 / 14%);
   padding: 30px;
 
   &__formWrapper {
@@ -26,6 +26,8 @@
   }
 
   &__title {
-    font: 500 20px/20px "Inter";
+    font:
+      500 20px/20px "Inter",
+      sans-serif;
   }
 }

@@ -13,7 +13,7 @@ export class EditPasswordTemplate extends Block<TEditPasswordTemplate> {
                   <img src="${avatarImg}" alt="Поменять аватар" class="${styles.profile__img}">
                   {{{changeAvatarButton}}}
                 </div>
-                <form>
+                <form novalidate>
                   <ul class="${styles.profile__userParamsContainer}">
                     {{{oldPass}}}
                     {{{newPass}}}
