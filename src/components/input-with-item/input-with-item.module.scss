@@ -1,4 +1,4 @@
-@import "../../styles/index.scss";
+@import "../../styles/index";
 
 .inputWithItem {
   width: 100%;
@@ -8,12 +8,14 @@
 
   &__item {
     color: $colorDisable;
-    font: 500 9px/9px "Inter";
+    font:
+      500 9px/9px "Inter",
+      sans-serif;
     position: absolute;
     pointer-events: none;
     left: 0;
     right: 15px;
-    top: 0px;
+    top: 0;
     white-space: nowrap;
     overflow: hidden;
     line-height: 40px;
@@ -41,7 +43,9 @@
 
   &__error {
     color: $colorError;
-    font: 500 9px/9px "Inter";
+    font:
+      500 9px/9px "Inter",
+      sans-serif;
     position: absolute;
     pointer-events: none;
     left: 0;

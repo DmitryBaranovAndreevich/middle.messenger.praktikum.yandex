@@ -1,18 +1,19 @@
-@import "../../../../styles/index.scss";
+@import "../../../../styles/index";
 
 .imgLoader {
-  background: $popupBackground;
+  background: #FFF;
   max-width: 300px;
   width: 100%;
   border-radius: 12px;
-  background: #fff;
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &__fileLabel {
-    font: 500 9px/9px "Inter";
+    font:
+      500 9px/9px "Inter",
+      sans-serif;
     display: block;
     margin: 0 auto 20px;
     text-align: center;
@@ -20,7 +21,9 @@
 
   &__error {
     color: $colorError;
-    font: 500 9px/9px "Inter";
+    font:
+      500 9px/9px "Inter",
+      sans-serif;
     position: absolute;
     pointer-events: none;
     left: 0;
@@ -36,7 +39,9 @@
   &__inputLabel {
     display: block;
     max-width: 60%;
-    font: 500 12px/12px "Inter";
+    font:
+      500 12px/12px "Inter",
+      sans-serif;
     color: $colorPrimary;
     text-align: center;
     margin: 40px auto;
