@@ -1,4 +1,4 @@
-@import "../../styles/index.scss";
+@import "../../styles/index";
 
 .errorPage {
   &__container {
@@ -10,12 +10,16 @@
 
   &__title {
     margin: 0;
-    font: 500 40px/40px "Inter";
+    font:
+      500 40px/40px "Inter",
+      sans-serif;
   }
 
   &__content {
     margin: 0;
-    font: 500 20px/20px "Inter";
+    font:
+      500 20px/20px "Inter",
+      sans-serif;
   }
 
   &__link {

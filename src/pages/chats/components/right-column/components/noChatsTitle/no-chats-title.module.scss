@@ -11,7 +11,9 @@
     position: relative;
     margin: auto;
     text-align: center;
-    font: 500 12px/12px "Inter";
+    font:
+      500 12px/12px "Inter",
+      sans-serif;
     color: $lightColorDisable;
   }
 }
