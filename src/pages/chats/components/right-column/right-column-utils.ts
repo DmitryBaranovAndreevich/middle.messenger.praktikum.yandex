@@ -18,6 +18,7 @@ export function createRightColumn(
         }
 
         console.log({ message: inputMessage });
+        input.value = "";
       },
     },
   });
