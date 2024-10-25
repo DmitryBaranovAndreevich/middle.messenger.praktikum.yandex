@@ -10,7 +10,7 @@ export class LoginTemplate extends Block<TLoginTemplate> {
   render() {
     return `<div class="${styles.loginPage}">
                 <p class="${styles.loginPage__title}">Вход<p/>
-                <form class="${styles.loginPage__formWrapper}" name="loginForm">
+                <form class="${styles.loginPage__formWrapper}" name="loginForm" novalidate>
                   {{{login}}}
                   {{{password}}}
                   {{{buttonSubmit}}}
